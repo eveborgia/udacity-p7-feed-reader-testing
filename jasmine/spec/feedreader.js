@@ -65,9 +65,11 @@ $(function () {
      */
     it('display when clicked and hide when clicked again', function () {
       /* The menu displays when clicked */
-      expect(document.querySelector('.menu-icon-link').classList.toggle('menu-hidden')).toBe(true);
+      $('.menu-icon-link').click();
+      expect($('body').hasClass('menu-hidden')).toEqual(false);
       /* The menu hides when clicked again. */
-      expect(document.querySelector('.menu-icon-link').classList.toggle('menu-hidden')).toBe(false);
+      $('.menu-icon-link').click();
+      expect($('body').hasClass('menu-hidden')).toEqual(true);
     });
   });
 
@@ -84,7 +86,9 @@ $(function () {
     });
     /* This test ensures that is at least one single .entry element. */
     it('has at least a single entry element', function () {
-      expect($('.entry .feed')).toBeDefined();
+      // expect($('.feed.entry')).toBeDefined();
+      const entryNumber = $('.entry').length;
+      expect(entryNumber).toBeGreaterThan(0);
     });
   });
 
@@ -92,26 +96,28 @@ $(function () {
   /* New test suite named "New Feed Selection" */
   describe('New Feed Selection', function () {
     /* In this test the new feed is loaded by the loadFeed function. */
-    let currentFeed;
-    let newFeed;
+    let prevUrl;
+    let newUrl;
     /* beforeEach function makes sure that the feed class is empty. */
     beforeEach(function (done) {
       $('.feed').empty();
       /* Loads the first feed of 0. */
       loadFeed(0, function () {
-      /* The currentFeed variable locates the URL in the feed. */
-        currentFeed = $('.feed').find(allFeeds.url);
+      /* Feed 0 done loading */
+        prevUrl = $('.feed').find(allFeeds.url);
         done();
       });
       /* loadFeed loads the second feed and locates the URL. */
       loadFeed(1, function () {
-        newFeed = $('.feed').find(allFeeds.url);
+        /* feed 1 done loading */
+        newUrl = $('.feed').find(allFeeds.url);
+        // all variables initialized, can begin tests
         done();
       });
     });
     /* Both variables are tested not to be equal. */
     it('is loaded and the content changes', function () {
-      expect(currentFeed).not.toBe(newFeed);
+      expect(prevUrl).not.toBe(newUrl);
     });
   });
 }());
