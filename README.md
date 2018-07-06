@@ -1,6 +1,13 @@
-# Project Overview
+# How to run this unit test, take the following steps:
 
-In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
+* Clone this repo to your local machine and open index.html in the root folder. This index loads jasmine reader at the bottom of the feed.
+* Verify the following tests (Also clearly documented in feedreader.js:
+Loop through each feed in the allFeeds object and ensures it has a URL defined and that the URL is not empty.
+* Loop through each feed in the allFeeds object and ensures it has a name defined and that the name is not empty.
+* Ensure the menu element is hidden by default. You'll have to analyze the HTML and the CSS to determine how we're performing the hiding/showing of the menu element.
+* Ensure the menu changes visibility when the menu icon is clicked.
+* Ensure when the loadFeed function is called and completes its work, there is at least a single .entry element within the .feed container. Remember, loadFeed() is asynchronous so this test wil require the use of Jasmine's beforeEach and asynchronous done() function.
+* Ensure when a new feed is loaded by the loadFeed function that the content actually changes. Remember, loadFeed() is asynchronous.
 
 
 ## Why this Project?
@@ -45,4 +52,4 @@ Review the Feed Reader Testing [Project Rubric](https://review.udacity.com/#!/pr
 18. Callbacks should be used to ensure that feeds are loaded before they are tested.
 19. Implement error handling for undefined variables and out-of-bound array access.
 20. When complete - all of your tests should pass. 
-21. Write a README file detailing all steps required to successfully run the application. If you have added additional tests (for Udacious Test Coverage),  provide documentation for what these future features are and what the tests are checking for.
+21. Write a README file detailing all steps required to successfully run the application.
