@@ -86,9 +86,7 @@ $(function () {
     });
     /* This test ensures that is at least one single .entry element. */
     it('has at least a single entry element', function () {
-      // expect($('.feed.entry')).toBeDefined();
-      const entryNumber = $('.entry').length;
-      expect(entryNumber).toBeGreaterThan(0);
+      expect($('.feed .entry').length).toBeGreaterThan(0);
     });
   });
 
@@ -105,14 +103,13 @@ $(function () {
       loadFeed(0, function () {
       /* Feed 0 done loading */
         prevUrl = $('.feed').find(allFeeds.url);
-        done();
-      });
-      /* loadFeed loads the second feed and locates the URL. */
-      loadFeed(1, function () {
-        /* feed 1 done loading */
-        newUrl = $('.feed').find(allFeeds.url);
-        // all variables initialized, can begin tests
-        done();
+        /* loadFeed loads the second feed and locates the URL. */
+        loadFeed(1, function () {
+          /* feed 1 done loading */
+          newUrl = $('.feed').find(allFeeds.url);
+          // all variables initialized, can begin tests
+          done();
+        });
       });
     });
     /* Both variables are tested not to be equal. */
