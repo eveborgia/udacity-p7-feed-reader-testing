@@ -10,6 +10,7 @@
  * since some of these tests may require DOM elements. We want
  * to ensure they don't run until the DOM is ready.
  */
+const body = $('body');
 $(function () {
   /* This is our first test suite - a test suite just contains
    * a related set of tests. This suite is all about the RSS
@@ -52,12 +53,11 @@ $(function () {
     });
   });
 
-
   /* New test suite named "The menu" */
   describe('The menu', function () {
     /* This test ensures the menu element is hidden by default. */
     it('hidden by default', function () {
-      expect($('body').hasClass('menu-hidden')).toBe(true);
+      expect(body.hasClass('menu-hidden')).toBe(true);
     });
 
     /* This test ensures the menu changes visibility when the menu
@@ -66,10 +66,10 @@ $(function () {
     it('display when clicked and hide when clicked again', function () {
       /* The menu displays when clicked */
       $('.menu-icon-link').click();
-      expect($('body').hasClass('menu-hidden')).toEqual(false);
+      expect(body.hasClass('menu-hidden')).toEqual(false);
       /* The menu hides when clicked again. */
       $('.menu-icon-link').click();
-      expect($('body').hasClass('menu-hidden')).toEqual(true);
+      expect(body.hasClass('menu-hidden')).toEqual(true);
     });
   });
 
